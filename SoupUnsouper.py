@@ -33,11 +33,9 @@ for file in files : #loop der går gennem hver fil i fil mappen
             hyperlink = gamedate_data[0].find("a")
             
         if hyperlink: #Her har vi problemet med vores hyperlink, ingen ide om hvirdan vi får det flot ud...
-                link = hyperlink.number.strip()# Get the href attribute from the <a> tag
+                link = hyperlink.text.strip()
                 print("Link:", link)
         
-    
-    
     
 #Scraper alt andet data i table ved table data
 #Problem med at td har data punkter der faktisk er headers.... 
