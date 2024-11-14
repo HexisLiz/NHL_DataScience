@@ -12,7 +12,8 @@ files = os.listdir ("NHL")
 for file in files : #loop der går gennem hver fil i fil mappen
     text = open("NHL/"+file, "r").read() #Her skal den "read" for at åbne det som string
     soup = BeautifulSoup (text, features = "lxml")
-    
+    #html_soup = BeautifulSoup (html_doc, 'html.parser')
+
     try:
         table = soup.findAll("table")#, {"class":"sortable stats_table now_sortable"})
         table_season = table [0]
@@ -32,8 +33,8 @@ for file in files : #loop der går gennem hver fil i fil mappen
             print("Game Date:", gamedate) #En print for at se om det hele faktisk virker ^_^
             hyperlink = gamedate_data[0].find("a")
             
-        if hyperlink: #Her har vi problemet med vores hyperlink, ingen ide om hvirdan vi får det flot ud...
-                link = hyperlink.text.strip()
+        if hyperlink: #Her har vi problemet med vores hyperlink, ingen ide om hvirdan vi får det flot ud... (Virker!!!)
+                link = hyperlink.get ("href") #https://www.crummy.com/software/BeautifulSoup/bs4/doc/ Her er hvordan man bruger "href".
                 print("Link:", link)
         
     
