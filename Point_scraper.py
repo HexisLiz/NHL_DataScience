@@ -14,14 +14,14 @@ from bs4 import BeautifulSoup
 #___________________________________________________________________________________________________________
 #Scraper for points (Som jo self ikke er # mål :C)
 files = os.listdir ("NHL")
-YearsToScrape = (2025 - 1980)  # This calculates 45, representing 45 years
+YearsToScrape = (2025 - 1980)
     
 for file in files : 
     text = open("NHL/"+file, "r").read() 
     soup = BeautifulSoup (text, features = "lxml")
 
     try:
-        table = soup.findAll("table")#, {"class":"sortable stats_table now_sortable"})
+        table = soup.findAll("table")
         table_season = table [0]
         table_playoff = table [1]
     except:
@@ -46,14 +46,13 @@ for file in files :
                 request = urllib.request.Request(url)
                 response = urllib.request.urlopen(request)  # Open the URL
       
-                if response.status == 200:  # Check if status code is 200 (OK)
+                if response.status == 200:  # Check if status code is 200 (OK) Burde være tidligere i koden?? error 429
                     hockeyscores = response.read().decode('utf-8')  # Decode the HTML content
                     
                     with open("NHL_score_" + str(year) + ".html", "w", encoding="utf-8") as file:
                         file.write(hockeyscores)
                     print("File for year " + str(year) + " saved successfully.")
         
-                    # Wait for 3 seconds between requests
                     time.sleep(3)
                 else:
                     print("Failed to retrieve the page for year " + str(year) + ". Status code:", response.status)
