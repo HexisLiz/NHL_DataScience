@@ -37,7 +37,7 @@ for file in files : #loop der går gennem hver fil i fil mappen
                 link = hyperlink.get ("href") #https://www.crummy.com/software/BeautifulSoup/bs4/doc/ Her er hvordan man bruger "href".
                 print("Link:", link)
         
-    
+  
 #Scraper alt andet data i table ved table data
 #Problem med at td har data punkter der faktisk er headers.... 
      
@@ -51,8 +51,10 @@ for file in files : #loop der går gennem hver fil i fil mappen
           visitor_goals = gamedata[2].text.strip()
           home_team = gamedata[3].text.strip()
           home_goals = gamedata[4].text.strip()
+          print (home_team)
+          
           df.append([visitor_team,visitor_goals,home_team,home_goals])
-         
+
        except:
           n = n+1
           print ("error", n)
