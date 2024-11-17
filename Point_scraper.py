@@ -46,26 +46,27 @@ for file in files :
            hyperlink = row.find ("a")
            time.sleep(3)        
            
-           if hyperlink:
+           try : 
                scorelink = hyperlink.get("href")
                url = "https://www.hockey-reference.com" + str(scorelink)
-               
-               try:
-                   request = urllib.request.Request(url)
-                   response = urllib.request.urlopen(request)  # Open the URL
-       
-                   if response.status == 200:  # Check if status code is 200 (OK) Burde være tidligere i koden?? error 429
-                       hockeyscores = response.read().decode('utf-8')  # Decode the HTML content
-                       
-                       with open("NHL_score_" + str(gamedate)+ " " + str(hometeam_name) + ".html", "w", encoding="utf-8") as file:
-                           file.write(hockeyscores)
-                       print("File for year " + str(gamedate) +str(hometeam_name)+ " saved successfully.")
-           
-                   else:
-                       print("Failed to retrieve the page for year " + str(gamedate) + ". Status code:", response.status)
-               
-               except:
-                   print("An error occurred for year " + str(gamedate))
+           except: 
+               print ("error scorelinkurl")
+           try:
+                request = urllib.request.Request(url)
+                response = urllib.request.urlopen(request)  # Open the URL
+        
+                if response.status == 200:  # Check if status code is 200 (OK) Burde være tidligere i koden?? error 429
+                    hockeyscores = response.read().decode('utf-8')  # Decode the HTML content
+                    
+                    with open("NHL_score_" + str(gamedate)+ " " + str(hometeam_name) + ".html", "w", encoding="utf-8") as file:
+                        file.write(hockeyscores)
+                    print("File for year " + str(scorelink) +str(hometeam_name)+ " saved successfully.")
+        
+                else:
+                    print("Failed to retrieve the page for year " + str(gamedate) + ". Status code:", response.status)
+            
+           except:
+                print("An error occurred for year " + str(gamedate))
 
           
            
