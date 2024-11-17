@@ -35,7 +35,7 @@ for file in files :
     
 #___________________________________________________________________________________________________________   
 #Her finder vi team navn til navngivnign af filer.  
-    for row in rows: #Vi mangler spil dato-data som er stored i header værdi.
+    for row in rows: 
        try:    
            gamedata = row.findAll ("td")
            hometeam_name = gamedata[3].text.strip()
