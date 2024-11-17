@@ -53,7 +53,7 @@ for file in files :
                try:
                    request = urllib.request.Request(url)
                    response = urllib.request.urlopen(request)  # Open the URL
-         
+       
                    if response.status == 200:  # Check if status code is 200 (OK) Burde være tidligere i koden?? error 429
                        hockeyscores = response.read().decode('utf-8')  # Decode the HTML content
                        
@@ -62,10 +62,10 @@ for file in files :
                        print("File for year " + str(gamedate) +str(hometeam_name)+ " saved successfully.")
            
                    else:
-                       print("Failed to retrieve the page for year " + str(year) + ". Status code:", response.status)
+                       print("Failed to retrieve the page for year " + str(gamedate) + ". Status code:", response.status)
                
                except:
-                   print("An error occurred for year " + str(year))
+                   print("An error occurred for year " + str(gamedate))
 
           
            
